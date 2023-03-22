@@ -1,0 +1,84 @@
+1 - Escreva qual é a funcionalidade de 5 métodos da Interface List. Faça um programa Java que
+demonstre o funcionamento dos 5 métodos que foram escolhidos.
+
+
+add(E element): adiciona um elemento à lista.
+remove(int index): remove o elemento na posição especificada na lista.
+get(int index): retorna o elemento na posição especificada na lista.
+size(): retorna o número de elementos na lista.
+contains(Object o): verifica se a lista contém o objeto especificado.
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Exe1 {
+    public static void main(String[] args) {
+        // cria uma lista de strings
+        List<String> lista = new ArrayList<>();
+        
+        // adiciona elementos à lista
+        lista.add("Erick");
+        lista.add("Grazielle");
+        lista.add("Pedro");
+        
+        // exibe o tamanho da lista
+        System.out.println("Tamanho da lista: " + lista.size());
+        
+        // verifica se a lista contém um elemento
+        if (lista.contains("Erick")) {
+            System.out.println("A lista contém Erick.");
+        }
+        
+        // exibe o elemento na segunda posição da lista
+        System.out.println("Elemento na posição 2: " + lista.get(1));
+        
+        // remove o elemento na primeira posição da lista
+        lista.remove(2);
+        
+        // exibe os elementos restantes da lista
+        for (String nome : lista) {
+            System.out.println(nome);
+        }
+    }
+}
+
+2 - Escreva qual é a funcionalidade de 5 métodos da Interface Set. Faça um programa Java que
+demonstre o funcionamento dos 5 métodos que foram escolhidos.
+
+import java.util.*;
+
+public class Exe2 {
+  public static void main(String[] args) {
+    Set<String> set = new HashSet<String>();
+
+    // adicionando elementos
+    set.add("Erick");
+    set.add("Grazielle");
+    set.add("Pedro");
+    set.add("Gabriel");
+    System.out.println("Set inicial: " + set);
+
+    // removendo um elemento
+    set.remove("Pedro");
+    System.out.println("Set após remover Pedro: " + set);
+
+    // verificando se contém um elemento
+    boolean containsJava = set.contains("Java");
+    System.out.println("O set contém Grazielle? " + containsJava);
+
+    // obtendo o tamanho do conjunto
+    int size = set.size();
+    System.out.println("Tamanho do set: " + size);
+
+    // limpando o conjunto
+    set.clear();
+    System.out.println("Set após limpar: " + set);
+  }
+}
+
+3- Escreva qual é a funcionalidade da classe Objects. Em qual versão da linguagem Java foi
+incluída a classe Objects. Faça um programa Java que demonstre o funcionamento da classe
+Objects.
+
+A classe java.util.Objects foi incluída na versão 7 da linguagem Java.
+Ela contém vários métodos utilitários para trabalhar com objetos em geral. Alguns dos métodos mais comuns são:
