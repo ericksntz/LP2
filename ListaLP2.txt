@@ -82,3 +82,230 @@ Objects.
 
 A classe java.util.Objects foi incluída na versão 7 da linguagem Java.
 Ela contém vários métodos utilitários para trabalhar com objetos em geral. Alguns dos métodos mais comuns são:
+
+import java.util.Objects;
+
+public class ExemploObjects {
+
+   public static void main(String[] args) {
+
+      String s1 = null;
+      String s2 = "Olá";
+      String s3 = "Mundo";
+
+      // Verifica se o objeto é nulo
+      System.out.println("s1 é nulo? " + Objects.isNull(s1));
+      System.out.println("s2 é nulo? " + Objects.isNull(s2));
+
+      // Compara dois objetos
+      System.out.println("s2 é igual a s3? " + Objects.equals(s2, s3));
+
+      // Gera um hash code para um objeto
+      System.out.println("Hash code de s2: " + Objects.hashCode(s2));
+   }
+}
+
+4 - Escreva um programa Java com uma função principal main que inclua um ArrayList de
+inteiros chamado valores. Peça ao usuário para informar 5 valores inteiros e adicione-os
+individualmente no ArrayList. Em seguida imprima os elementos do ArrayList, de forma
+individual, usando o laço for.
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class ExemploArrayList {
+
+    public static void main(String[] args) {
+        ArrayList<Integer> valores = new ArrayList<Integer>();
+        Scanner sc = new Scanner(System.in);
+
+        // Solicita ao usuário a entrada de 5 valores inteiros
+        for (int i = 0; i < 5; i++) {
+            System.out.print("Digite um valor inteiro: ");
+            int valor = sc.nextInt();
+            valores.add(valor);
+        }
+
+        // Imprime os elementos do ArrayList
+        System.out.println("Elementos do ArrayList:");
+        for (int i = 0; i < valores.size(); i++) {
+            System.out.println(valores.get(i));
+        }
+    }
+}
+
+5-Faça um programa Java que armazene 10 valores aleatórios em um ArrayList. Em seguida o
+programa deve imprimir o maior e o menor valor armazenados no ArrayList
+
+import java.util.ArrayList;
+import java.util.Random;
+
+public class ExemploArrayList {
+
+    public static void main(String[] args) {
+
+        ArrayList<Integer> valores = new ArrayList<Integer>();
+        Random gerador = new Random();
+
+        // Adiciona 10 valores aleatórios no ArrayList
+        for (int i = 0; i < 10; i++) {
+            int valor = gerador.nextInt(100);
+            valores.add(valor);
+        }
+
+        // Encontra o maior e o menor valor no ArrayList
+        int menorValor = valores.get(0);
+        int maiorValor = valores.get(0);
+
+        for (int i = 1; i < valores.size(); i++) {
+            int valorAtual = valores.get(i);
+
+            if (valorAtual < menorValor) {
+                menorValor = valorAtual;
+            } else if (valorAtual > maiorValor) {
+                maiorValor = valorAtual;
+            }
+        }
+
+        // Imprime o maior e o menor valor armazenados no ArrayList
+        System.out.println("Valores armazenados no ArrayList: " + valores);
+        System.out.println("Menor valor: " + menorValor);
+        System.out.println("Maior valor: " + maiorValor);
+    }
+}
+
+6 - Escreva o código fonte da classe Veiculo, incluir o atributo String placa, dois métodos
+construtores, métodos get/set, incluir os métodos equals, hashcode, toString da classe Object.
+
+public class Veiculo {
+
+    private String placa;
+    
+    // construtor padrão
+    public Veiculo() {
+    }
+    
+    // construtor com parâmetros
+    public Veiculo(String placa) {
+        this.placa = placa;
+    }
+    
+    // métodos get/set
+    public String getPlaca() {
+        return placa;
+    }
+
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
+    
+    // método equals
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        Veiculo other = (Veiculo) obj;
+        if (placa == null) {
+            if (other.placa != null) {
+                return false;
+            }
+        } else if (!placa.equals(other.placa)) {
+            return false;
+        }
+        return true;
+    }
+    
+    // método hashCode
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((placa == null) ? 0 : placa.hashCode());
+        return result;
+    }
+    
+    // método toString
+    @Override
+    public String toString() {
+        return "Veiculo [placa=" + placa + "]";
+    }
+}
+
+
+7 - Escreva o código fonte da classe Carro que herda as características da classe Veiculo, incluir
+o atributo String modelo, String cor, dois métodos construtores, métodos get/set, incluir os
+métodos equals, hashcode, toString da classe Object.
+
+public class Carro extends Veiculo {
+
+    private String modelo;
+    private String cor;
+
+    public Carro(String marca, int ano, double preco, String modelo, String cor) {
+        super(marca, ano, preco);
+        this.modelo = modelo;
+        this.cor = cor;
+    }
+
+    public Carro(String marca, int ano, double preco, int codigo, String modelo, String cor) {
+        super(marca, ano, preco, codigo);
+        this.modelo = modelo;
+        this.cor = cor;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public String getCor() {
+        return cor;
+    }
+
+    public void setCor(String cor) {
+        this.cor = cor;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Carro other = (Carro) obj;
+        if (!Objects.equals(this.modelo, other.modelo)) {
+            return false;
+        }
+        if (!Objects.equals(this.cor, other.cor)) {
+            return false;
+        }
+        return super.equals(obj);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = super.hashCode();
+        hash = 89 * hash + Objects.hashCode(this.modelo);
+        hash = 89 * hash + Objects.hashCode(this.cor);
+        return hash;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "\nModelo: " + modelo + "\nCor: " + cor;
+    }
+}
+
+
